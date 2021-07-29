@@ -1,26 +1,33 @@
-//const adjacentList = new Map();
-//adjacentList.set('A', ['B', 'C']);
+// Usage:
+// const edgeMap = new Map();
+// adjacentList.set('A', ['B', 'C']);
+// const destination = depthFirstSearch('A', 'C', map); 
 
 // takes Map and return destination if found else null
-const depthFirstSearch = (start, target, visited = new Set()) => {
+const depthFirstSearch = (start, target, edgeMap, visited = new Set()) => {
+    
+    visited.add(start);
 
-    const destinations = adjacentList.get(start)
+    const destinations = edgeMap.get(start);
 
-    console.log(destinations)
+    if (destinations) {
 
-    for(const destination of destinations) {
+      for(const destination of destinations) {
 
-      if (destination == target) {
-        return destination;
-      }
+        console.log(destination);
 
-      if(!visited.has(destination)) {
-        //console.log(`new destination found: ${destination}`);
-        depthFirstSearch(destination, target, visited);
+        if (destination == target) {
+          return destination;
+        }
+
+        if(!visited.has(destination)) {
+          depthFirstSearch(destination, target, edgeMap, visited);
+        }
+
       }
     }
 
     return null;
 }
 
-module.exports = { depthFirstSearch };
+module.exports = depthFirstSearch;
