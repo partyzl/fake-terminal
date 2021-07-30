@@ -1,5 +1,6 @@
 const lsError = {
   invalidFlagError : Error(''),
+  disabledFlagError : Error(''),
   invalidPathError : Error(''),
   multiplePathError : Error('')
 }

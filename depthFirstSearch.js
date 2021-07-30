@@ -14,8 +14,6 @@ const depthFirstSearch = (start, target, edgeMap, visited = new Set()) => {
 
       for(const destination of destinations) {
 
-        console.log(destination);
-
         if (destination == target) {
           return destination;
         }

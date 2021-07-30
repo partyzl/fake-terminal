@@ -7,7 +7,7 @@ function isValidFunction(f) {
 }
 
 function isValidFlag(f) {
-  return true;
+  return false;
 }
 
 function isValidPath(p) {
@@ -21,7 +21,6 @@ const invalidFunctionError = Error('');
 function evaluateExpression(exp)
 {
   const tokens = exp.split(" ");
-  //console.log(tokens);
   let cmd = undefined;
   let path = '.';
   let flags = [];
@@ -45,12 +44,11 @@ function evaluateExpression(exp)
 
       if (isValidFlag(token)) {
 
-        flags.append(token);
+        flags.push(token);
 
       } else {
 
-        //throw(err.lsError.invalidFlagError);
-        console.log('invalidFlagError');
+        throw(err.lsError.invalidFlagError);
 
       }
 
@@ -65,15 +63,13 @@ function evaluateExpression(exp)
 
         } else {
 
-          //throw(err.lsError.multiplePathError);
-          console.log('multiplePathError');
+          throw(err.lsError.multiplePathError);
 
         }
 
       } else {
 
-        //throw(err.lsError.invalidPathError);
-          console.log('invalidPathError');
+        throw(err.lsError.invalidPathError);
 
       }
 
@@ -83,3 +79,4 @@ function evaluateExpression(exp)
   return `${cmd} ${path}`;
 }
 
+module.exports = evaluateExpression;
